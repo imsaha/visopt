@@ -12,7 +12,7 @@ namespace visopt.Models
         public static bool Validate(this Appointment appointment)
         {
             if(appointment.StartDateTime >= appointment.Doctor.StartWorkingHour &&
-                appointment.EndsDateTime <= appointment.Doctor.EndWorkingHour &&
+                appointment.EndsDateTime.TimeOfDay <= appointment.Doctor.EndWorkingHour.TimeOfDay &&
                 appointment.StartDateTime > DateTime.Now &&
                 appointment.EndsDateTime > DateTime.Now)
             {

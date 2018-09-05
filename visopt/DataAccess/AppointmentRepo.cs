@@ -48,7 +48,10 @@ namespace visopt.DataAccess
         /// <returns></returns>
         public async Task<List<Appointment>> FindbyDoctorId(int doctorId)
         {
-            return await _context.Appointments.Where(x => x.DoctorId == doctorId)?.ToListAsync();
+            return await _context.Appointments
+                 .Include(d => d.Doctor)
+                .Include(d => d.Client)
+                .Where(x => x.DoctorId == doctorId)?.ToListAsync();
         }
         
         /// <summary>
@@ -58,7 +61,10 @@ namespace visopt.DataAccess
         /// <returns></returns>
         public async Task<List<Appointment>> FindbyClientId(int clientId)
         {
-            return await _context.Appointments.Where(x => x.DoctorId == clientId)?.ToListAsync();
+            return await _context.Appointments
+                .Include(d=>d.Doctor)
+                .Include(d=>d.Client)
+                .Where(x => x.ClientId == clientId)?.ToListAsync();
         }
 
 

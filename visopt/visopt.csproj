@@ -135,6 +135,8 @@
     <Content Include="Views\Appointment\Edit.cshtml" />
     <Content Include="Views\Appointment\Delete.cshtml" />
     <Content Include="Views\Doctor\Search.cshtml" />
+    <Content Include="Views\Doctor\Appointments.cshtml" />
+    <Content Include="Views\Client\Appointments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />

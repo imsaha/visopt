@@ -97,5 +97,13 @@ namespace visopt.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        public async Task<ActionResult> Appointments(int id)
+        {
+            AppointmentRepo _repo = new AppointmentRepo();
+            List<Appointment> data = await _repo.FindbyClientId(id);
+            return View(data.OrderByDescending(d=>d.StartDateTime)?.ToList());
+        }
+
     }
 }

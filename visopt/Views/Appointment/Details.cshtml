@@ -1,0 +1,50 @@
+﻿@model visopt.Models.Appointment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Appointment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Client
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.FullName)
+        </dd>
+
+        <dt>
+           Doctor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Doctor.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndsDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndsDateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

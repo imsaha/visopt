@@ -44,7 +44,7 @@ namespace visopt.Controllers.api
         }
 
         [HttpPost]
-        public async Task<int> Book(Appointment data)
+        public async Task<int> Book([FromBody] Appointment data)
         {
             return await _appontment.AddOrUpdate(data);
         }

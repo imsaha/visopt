@@ -31,13 +31,13 @@ namespace visopt.Controllers.api
         }
 
         [HttpDelete]
-        public async Task<int> Remove(int id)
+        public async Task<int> Remove([FromBody] int id)
         {
             return await _doctor.Remove(id);
         }
 
         [HttpPost]
-        public async Task<int> Add(Doctor doctor)
+        public async Task<int> Add([FromBody] Doctor doctor)
         {
             return await _doctor.AddOrUpdate(doctor);
         }

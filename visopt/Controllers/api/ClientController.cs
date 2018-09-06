@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using visopt.DataAccess;
@@ -40,9 +43,24 @@ namespace visopt.Controllers.api
         }
 
         [HttpPost]
-        public async void Add(Client client)
+        public async Task<HttpResponseMessage> Add([FromBody] Client client)
         {
-            await _client.AddOrUpdate(client);
+            try
+            {
+                if (!await _client.ValidateClientMobile(client.MobileNo))
+                    return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, "Mobile number is already registered.");
+
+                if (!ModelState.IsValid)
+                    return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed,"Provided data isn't in expected format");
+
+                await _client.AddOrUpdate(client);
+                return Request.CreateResponse(HttpStatusCode.Created);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+            }
         }
     }
 }
